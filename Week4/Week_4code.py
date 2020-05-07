@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification, make_blobs
 from matplotlib.colors import ListedColormap
 from sklearn.datasets import load_breast_cancer
-from adspy_shared_utilities2 import load_crime_dataset
+from adspy_shared_utilities2   import load_crime_dataset
 
 
 cmap_bold = ListedColormap(['#FFFF00', '#00FF00', '#0000FF','#000000'])
@@ -90,7 +90,7 @@ cancer = load_breast_cancer()
 
 
 from sklearn.naive_bayes import GaussianNB
-from adspy_shared_utilities import plot_class_regions_for_classifier
+from adspy_shared_utilities2 import plot_class_regions_for_classifier
 
 X_train, X_test, y_train, y_test = train_test_split(X_C2, y_C2, random_state = 0)
 
@@ -373,3 +373,36 @@ activation function'.format(this_activation)
     plot_class_regions_for_classifier_subplot(nnclf, X_train, y_train,
                                              X_test, y_test, title, axis)
     plt.tight_layout()
+
+
+
+
+
+# Neural networks: Regression
+
+
+from sklearn.neural_network import MLPRegressor
+
+fig, subaxes = plt.subplots(2,3, figsize=(11,8),dpi=70) 
+
+X_predict_input = np.linspace(-3,3,50).reshape(-1,1)
+
+X_train, X_test, y_train, y_test = train_test_split(X_R1[0::5], y_R1[0::5], random_state = 0) # 0::5 every 5th elements
+
+
+for thisaxisrow, thisactivation in zip(subaxes, ['tanh', 'relu']):
+    for thisalpha, thisaxis in zip([0.0001, 1.0, 100], thisaxisrow):
+        mlpreg = MLPRegressor(hidden_layer_sizes = [100,100],
+                             activation = thisactivation,
+                             alpha = thisalpha,
+                             solver = 'lbfgs').fit(X_train, y_train)
+        y_predict_output = mlpreg.predict(X_predict_input)
+        thisaxis.set_xlim([-2.5, 0.75])
+        thisaxis.plot(X_predict_input, y_predict_output,
+                     '^', markersize = 10)
+        thisaxis.plot(X_train, y_train, 'o')
+        thisaxis.set_xlabel('Input feature')
+        thisaxis.set_ylabel('Target value')
+        thisaxis.set_title('MLP regression\nalpha={}, activation={})'
+                          .format(thisalpha, thisactivation))
+        plt.tight_layout()
