@@ -116,168 +116,52 @@
 # 
 # * Refer to the pinned threads in Week 4's discussion forum when there is something you could not figure it out.
 
-# In[ ]:
+# In[35]:
 
-print('hi')
+#from sklearn import preprocessing
+#from sklearn.svm import SVC, LinearSVC
+#from sklearn.ensemble import RandomForestClassifier
+#from sklearn.preprocessing import MinMaxScaler
+#from sklearn.metrics import roc_curve, auc
+#from sklearn.model_selection import train_test_split, GridSearchCV
+#from sklearn.preprocessing import LabelEncoder
+#import numpy as np
+#import pandas as pd
 
+#training = pd.read_csv('train.csv', engine='python',index_col = False)
 
-# In[4]:
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+#training = training[pd.notnull(training['compliance'])]
 
-#from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import roc_curve, auc
-from sklearn import preprocessing 
 
-from sklearn.preprocessing import MinMaxScaler
+#X_train_p = training[['ticket_id', 'fine_amount', 'agency_name', 'inspector_name', 'violation_code', 'disposition',
+#                          'judgment_amount', 'country', 'admin_fee', 'state_fee', 'late_fee', 'discount_amount', 'clean_up_cost', 'judgment_amount']]
 
+#le = LabelEncoder()
 
+#X_train_p['agency_name'] = le.fit_transform(X_train_p['agency_name'])
+#X_train_p['inspector_name'] = le.fit_transform(X_train_p['inspector_name'])
+#X_train_p['violation_code'] = le.fit_transform(X_train_p['violation_code'])
+#X_train_p['disposition'] = le.fit_transform(X_train_p['disposition'])
+#X_train_p['country'] = le.fit_transform(X_train_p['country'])
+#X_train_p.head()
 
-training = pd.read_csv('train.csv',engine = 'python')
-#testing = pd.read_csv('test.csv', engine = 'python')
 
-training = training[pd.notnull(training['compliance'])]
 
-print('reading table done')
 
+#y_train_p = training.iloc[:, 33:]
 
+#X_train, X_test, y_train, y_test = train_test_split(X_train_p, y_train_p, random_state=0)
 
+#y_train = y_train['compliance'].values
 
+#r = RandomForestClassifier(n_estimators=100, max_features=14, random_state=0)
 
-
-#df1.drop(['B', 'C'], axis=1)
-
-X_train_p = training[['ticket_id','fine_amount','judgment_amount','admin_fee','state_fee','late_fee','discount_amount','clean_up_cost','judgment_amount']]
-
-#X_train_p =  pd.get_dummies(X_train_p, prefix=['agency_name','violation_code','disposition'],columns=['agency_name','violation_code','disposition'])
-
-y_train_p = training.iloc[:,33:]
-
-
-print('modifiy columns done')
-
-
-# Normalisation
-
-scaler = MinMaxScaler()
-
-X_train_p_scaled = scaler.fit_transform(X_train_p)
-
-print('Normailisation done')
-
-
-
-
-
-
-
-
-
-#df1.drop(['B', 'C'], axis=1)
-
-
-
-
-
-
-# In[ ]:
-
-
-##Feature Important
-
-
-#feat_labels = ['ticket_id','fine_amount','agency_name','inspector_name','violation_code','disposition','judgment_amount','country','admin_fee','state_fee','late_fee','discount_amount','clean_up_cost','judgment_amount']
-#for feature in zip(feat_labels, r.feature_importances_):
-#    print(feature)
-
-
-
-
-
-X_train, X_test, y_train, y_test = train_test_split(X_train_p, y_train_p, random_state = 0)
-
-
-
-
-
-##Grid Search
-y_train = y_train['compliance'].values.ravel()
-
-print('y_train reshape done')
-
-#param_grid1 = [{'C': [0.1,1,15],'gamma': [0.1, 0.5,1] }]
-
-#r = SVC()
-
-#grid_rdf = GridSearchCV(r, param_grid = param_grid1, n_jobs=4, scoring = 'roc_auc')
-
-#grid_rdf.fit(X_train, y_train)
-
-#roc_auc_result = grid_rdf.best_params_
-
-
-#print('Best Parameter:',roc_auc_result )
-#print('Best Auc Score:', roc_auc)
-
-
-
-
-
-r = SVC(C=100,gamma = 0.1)
-
-probability = r.fit(X_train, y_train).predict(X_test)
-
-print(probability)
-
-
-
-
-
-
-
-## AUC
+#probability = r.fit(X_train, y_train).predict_proba(X_test)
 
 #y_test = y_test['compliance'].values
 
-#y_test = y_test.reshape(-1,1)
-
-#fpr_rdf, tpr_fdr,_ = roc_curve(y_test, probability)
-
-#roc_auc_fdr = auc(fpr_rdf, tpr_fdr)
-
-#print(roc_auc_fdr)
-
-
-##Metric Print
-#print(y_test.shape)
-
-
-
-#print(X_test.shape)
-
-
-#print(X_train.shape)
-#print(X_test.shape)
-
-#print(probability1)
-#print(probability1)
-#print(y_test)
-
-
-#y_test
-#print(y_test.shape)
-#print(probability.shape)
-
-
-
-#print(y_test.shape)
-
-
-#redo the ROC, since i removed NAN
+#y_test = y_test.reshape(-1,)
 
 
 
@@ -287,186 +171,209 @@ print(probability)
 
 
 
+# In[46]:
+
+#def hi():
+
+#    testing = pd.read_csv('test.csv', engine='python',index_col = False)
 
 
-# In[23]:
+#    X_test_p = testing[['ticket_id', 'fine_amount', 'agency_name', 'inspector_name', 'violation_code', 'disposition',
+#                              'judgment_amount', 'country', 'admin_fee', 'state_fee', 'late_fee', 'discount_amount', 'clean_up_cost', 'judgment_amount']]
 
-testing = pd.read_csv('test.csv', engine = 'python')
+#    X_test_p['agency_name'] = le.fit_transform(X_test_p['agency_name'])
+#    X_test_p['inspector_name'] = le.fit_transform(X_test_p['inspector_name'])
+#    X_test_p['violation_code'] = le.fit_transform(X_test_p['violation_code'])
+#    X_test_p['disposition'] = le.fit_transform(X_test_p['disposition'])
+#    X_test_p['country'] = le.fit_transform(X_test_p['country'])
 
-
-X_test_p = testing[['ticket_id','fine_amount','agency_name','inspector_name','violation_code','disposition','judgment_amount','country','admin_fee','state_fee','late_fee','discount_amount','clean_up_cost','judgment_amount']]
-
-X_test_p =  pd.get_dummies(X_test_p, prefix=['agency_name','inspector_name','violation_code','disposition','country'],columns=['agency_name','inspector_name','violation_code','disposition','country'])
-
-
-print(X_test_p.shape)
-print(X_train_p.shape)
-
-
-
-test_probability = r.fit(X_train, y_train).predict_proba(X_test_p)
-
-print(test_probability)
+#    X_test_p.head()
 
 
 
+#    r = RandomForestClassifier(n_estimators=100, max_features=14, random_state=0)
 
-# In[ ]:
+#    test_probability = r.fit(X_train, y_train).predict_proba(X_test_p)
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+        #test_probability = round(test_probability,8)
 
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split, GridSearchCV
+#   Final = pd.Series(test_probability[:,1], index = None)
+    
+#    X_test_p['paying_probability'] = test_probability[:,1]
+    
+#    Ticket_id = pd.Series(X_test_p['ticket_id'], index = None)
+    
+    #Ticket_id = X_test_p['ticket_id']
+    
+#    Final = X_test_p[['ticket_id','paying_probability']]
+    
+
+    
+#    Final = X_test_p.set_index('ticket_id')
+    
+    
+    
+#    Final = Final.iloc[:,-1]
+
+    
+    #df.style.hide_index()
+    
+#    return Final
+
+
+#hi()
+
+
+# In[48]:
+
+from sklearn import preprocessing
+from sklearn.svm import SVC, LinearSVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import roc_curve, auc
-from sklearn import preprocessing 
-
-
-
-
-
-training = pd.read_csv('train.csv',engine = 'python')
-#testing = pd.read_csv('test.csv', engine = 'python')
-
-
-
-
-training = training[pd.notnull(training['compliance'])]
-
-
-
-
-
-
-
-
-#df1.drop(['B', 'C'], axis=1)
-
-X_train_p = training[['ticket_id','fine_amount','agency_name','inspector_name','violation_code','disposition','judgment_amount','country','admin_fee','state_fee','late_fee','discount_amount','clean_up_cost','judgment_amount']]
-
-X_train_p =  pd.get_dummies(X_train_p, prefix=['agency_name','inspector_name','violation_code','disposition','country'],columns=['agency_name','inspector_name','violation_code','disposition','country'])
-
-y_train_p = training.iloc[:,33:]
-
-
-
-feat_labels = ['ticket_id','fine_amount','agency_name','inspector_name','violation_code','disposition','judgment_amount','country','admin_fee','state_fee','late_fee','discount_amount','clean_up_cost','judgment_amount']
-
-
-#X_train[['agency_name','inspector_name','violator_name','violation_street_name','mailing_address_str_name','city','state','zip_code','non_us_str_code','country','ticket_issued_date','hearing_date','violation_code','violation_description','disposition','grafitti_status']] = X_train[['agency_name','inspector_name','violator_name','violation_street_name','mailing_address_str_name','city','state','zip_code','non_us_str_code','country','ticket_issued_date','hearing_date','violation_code','violation_description','disposition','grafitti_status']].stack().astype('category').unstack()
-
-
-
-X_train, X_test, y_train, y_test = train_test_split(X_train_p, y_train_p, random_state = 0)
-
-
-
-
-y_train = y_train['compliance'].values
-
-
-
-param_grid1 = [{'n_estimators': [1,10,100],'max_features': [10,20,25,30,35]}]
-
-
-
-r = RandomForestRegressor(random_state = 0)
-
-
-
-grid_rdf = GridSearchCV(r, param_grid = param_grid1, scoring = 'roc_auc')
-
-
-grid_rdf.fit(X_train, y_train)
-
-roc_auc_result = grid_rdf.best_params_
-
-
-
-print('Best Parameter:',roc_auc_result )
-
-
-
-
-
-r = RandomForestRegressor(n_estimators = 100, max_features = 35, random_state = 0)
-
-
-
-
-
-
-
-probability = r.fit(X_train, y_train).predict(X_test)
-
-
-
-for feature in zip(feat_labels, r.feature_importances_):
-    print(feature)
-
-#probability1 = probability.reshape(-1,1)
-
-#probability1 = probability1.astype(int)
-
-
-
-y_test = y_test['compliance'].values
-
-
-
-#y_test = y_test.as_matrix()
-
-#y_test = y_test.reshape(-1,0)
-
-fpr_rdf, tpr_fdr,_ = roc_curve(y_test, probability)
-
-roc_auc_fdr = auc(fpr_rdf, tpr_fdr)
-
-roc_auc_fdr
-
-
-#print(y_test.shape)
-#print(probability.shape)
-
-
-#print(X_test.shape)
-
-
-#print(X_train.shape)
-#print(X_test.shape)
-
-#print(probability1)
-#print(probability1)
-#print(y_test)
-
-
-#y_test
-#print(y_test.shape)
-#print(probability.shape)
-
-
-
-#print(y_test.shape)
-
-
-#redo the ROC, since i removed NAN
-
-
-
-# In[ ]:
-
-import pandas as pd
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
+import pandas as pd
 
 def blight_model():
     
-    # Your code here
+
+    training = pd.read_csv('train.csv', engine='python')
+
+
+    training = training[pd.notnull(training['compliance'])]
+
+
+    X_train_p = training[['ticket_id', 'fine_amount', 'agency_name', 'inspector_name', 'violation_code', 'disposition',
+                          'judgment_amount', 'country', 'admin_fee', 'state_fee', 'late_fee', 'discount_amount', 'clean_up_cost', 'judgment_amount']]
+
+    le = LabelEncoder()
+
+    X_train_p['agency_name'] = le.fit_transform(X_train_p['agency_name'])
+    X_train_p['inspector_name'] = le.fit_transform(X_train_p['inspector_name'])
+    X_train_p['violation_code'] = le.fit_transform(X_train_p['violation_code'])
+    X_train_p['disposition'] = le.fit_transform(X_train_p['disposition'])
+    X_train_p['country'] = le.fit_transform(X_train_p['country'])
+    X_train_p.head()
+
+
+
+
+    y_train_p = training.iloc[:, 33:]
+
+    X_train, X_test, y_train, y_test = train_test_split(X_train_p, y_train_p, random_state=0)
+
+    y_train = y_train['compliance'].values
+
+    r = RandomForestClassifier(n_estimators=100, max_features=14, random_state=0)
+
+    probability = r.fit(X_train, y_train).predict_proba(X_test)
+
+    y_test = y_test['compliance'].values
+
+    y_test = y_test.reshape(-1,)
+
+
+
+
+
+
+
+
+    testing = pd.read_csv('test.csv', engine='python',index_col = False)
+
+
+    X_test_p = testing[['ticket_id', 'fine_amount', 'agency_name', 'inspector_name', 'violation_code', 'disposition',
+                              'judgment_amount', 'country', 'admin_fee', 'state_fee', 'late_fee', 'discount_amount', 'clean_up_cost', 'judgment_amount']]
+
+    X_test_p['agency_name'] = le.fit_transform(X_test_p['agency_name'])
+    X_test_p['inspector_name'] = le.fit_transform(X_test_p['inspector_name'])
+    X_test_p['violation_code'] = le.fit_transform(X_test_p['violation_code'])
+    X_test_p['disposition'] = le.fit_transform(X_test_p['disposition'])
+    X_test_p['country'] = le.fit_transform(X_test_p['country'])
+
+    X_test_p.head()
+
+
+
+    r = RandomForestClassifier(n_estimators=100, max_features=14, random_state=0)
+
+    test_probability = r.fit(X_train, y_train).predict_proba(X_test_p)
+
+        #test_probability = round(test_probability,8)
+
+#   Final = pd.Series(test_probability[:,1], index = None)
     
-    return # Your answer here
+    X_test_p['paying_probability'] = test_probability[:,1]
+    
+#    Ticket_id = pd.Series(X_test_p['ticket_id'], index = None)
+    
+    #Ticket_id = X_test_p['ticket_id']
+    
+#    Final = X_test_p[['ticket_id','paying_probability']]
+    
+
+    
+    Final = X_test_p.set_index('ticket_id')
+    
+    
+    
+    Final = Final.iloc[:,-1]
+
+    
+    #df.style.hide_index()
+    
+    return Final
+
+
+# In[49]:
+
+blight_model()
+
+
+# In[50]:
+
+#import numpy as np
+#bm = blight_model()
+#res = '{:40s}'.format('Object Type:')
+#res += ['Failed: type(bm) should Series\n','Passed\n'][type(bm)==pd.Series]
+#res += '{:40s}'.format('Data Shape:')
+#res += ['Failed: len(bm) should be 61001\n','Passed\n'][len(bm)==61001]
+#res += '{:40s}'.format('Data Values Type:')
+#res += ['Failed: bm.dtype should be float\n','Passed\n'][str(bm.dtype).count('float')>0]
+#res += '{:40s}'.format('Data Values Infinity:')
+#res += ['Failed: values should not be infinity\n','Passed\n'][not any(np.isinf(bm))]
+#res += '{:40s}'.format('Data Values NaN:')
+#res += ['Failed: values should not be NaN\n','Passed\n'][not any(np.isnan(bm))]
+#res += '{:40s}'.format('Data Values in [0,1] Range:')
+#res += ['Failed: all values should be in [0.,1.]\n','Passed\n'][all((bm<=1.) & (bm>=0.))]
+#res += '{:40s}'.format('Data Values not all 0 or 1:')
+#res += ['Failed: values should be scores not predicted labels\n','Passed\n'][not all((bm.isin({0,1,0.0,1.0})))]
+#res += '{:40s}'.format('Index Type:')
+#res += ['Failed: type(bm.index) should be Int64Index\n','Passed\n'][type(bm.index)==pd.Int64Index]
+#res += '{:40s}'.format('Index Values:')
+#if bm.index.shape==(61001,):
+#    res +=['Failed: index values should match test.csv\n','Passed\n'
+#          ][all(pd.read_csv('test.csv',usecols=[0],index_col=0
+#                           ).sort_index().index.values==bm.sort_index().index.values)]
+#else:
+#    res+='Failed: bm.index length should be 61001'
+#res += '{:40s}'.format('Can run model twice:')
+#bm2 = None
+#try:
+#    bm2 = blight_model()
+#    res += 'Passed\n'
+#except:
+#    res += ['Failed: second run of blight_model() threw an Exception']
+#res += '{:40s}'.format('Can run model twice with same results:')
+#if not bm2 is None:
+#    res += ['Failed: second run of blight_model() produced different results (this might not be a problem)\n','Passed\n'][
+#        all(bm.apply(lambda x:round(x,3))==bm2.apply(lambda x:round(x,3))) and all(bm.index==bm2.index)]    
+#print(res)
 
 
 # In[ ]:
 
-blight_model()
+
 
