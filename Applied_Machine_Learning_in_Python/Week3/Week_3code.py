@@ -191,9 +191,9 @@ y_proba_lr = lr.fit(X_train, y_train).predict_proba(X_test)
 y_proba_list = list(zip(y_test[0:20], y_proba_lr[0:20,1]))
 
 # show the probability of positive class for first 20 instances
-y_proba_list.shape
+y_proba_list
 
-y_proba_lr.shape
+y_proba_lr
 type(y_test)
 
 
@@ -284,8 +284,6 @@ plt.show()
 
 
 
- y_score_svm.shape
- y_test.type
 
 
 
@@ -395,7 +393,7 @@ plt.plot(X_test, y_predict_dummy_mean, color='red', linestyle = 'dashed',
          linewidth=2, label = 'dummy')
 
 plt.show()
-'
+
 
 
 
