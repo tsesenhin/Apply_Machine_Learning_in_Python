@@ -70,3 +70,88 @@ plt.colorbar(orientation='horizontal', ticks=[pca.components_.min(), 0,
 
 
 
+
+### Manifold learning methods
+
+#### Multidimensional scaling (MDS) on the fruit dataset
+
+
+from adspy_shared_utilities2 import plot_labelled_scatter
+from sklearn.preprocessing import StandardScaler
+from sklearn.manifold import MDS
+
+# each feature should be centered (zero mean) and with unit variance
+X_fruits_normalized = StandardScaler().fit(X_fruits).transform(X_fruits)  
+
+mds = MDS(n_components = 2) # 2 dimension in visualisation 
+
+X_fruits_mds = mds.fit_transform(X_fruits_normalized)
+
+plot_labelled_scatter(X_fruits_mds, y_fruits, ['apple', 'mandarin', 'orange', 'lemon'])
+plt.xlabel('First MDS feature')
+plt.ylabel('Second MDS feature')
+plt.title('Fruit sample dataset MDS');
+
+
+
+
+#### Multidimensional scaling (MDS) on the breast cancer dataset
+
+#(This example is not covered in the lecture video, but is included here so you can compare it to the results from PCA.)
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.manifold import MDS
+from sklearn.datasets import load_breast_cancer
+
+cancer = load_breast_cancer()
+(X_cancer, y_cancer) = load_breast_cancer(return_X_y = True)
+
+# each feature should be centered (zero mean) and with unit variance
+X_normalized = StandardScaler().fit(X_cancer).transform(X_cancer)  
+
+mds = MDS(n_components = 2) # 2 dimension in visualisation 
+
+X_mds = mds.fit_transform(X_normalized)
+
+from adspy_shared_utilities2 import plot_labelled_scatter
+plot_labelled_scatter(X_mds, y_cancer, ['malignant', 'benign'])
+
+plt.xlabel('First MDS dimension')
+plt.ylabel('Second MDS dimension')
+plt.title('Breast Cancer Dataset MDS (n_components = 2)');
+
+
+
+
+
+
+#### t-SNE on the fruit dataset
+
+
+from sklearn.manifold import TSNE
+
+tsne = TSNE(random_state = 0)
+
+X_tsne = tsne.fit_transform(X_fruits_normalized)
+
+plot_labelled_scatter(X_tsne, y_fruits, 
+    ['apple', 'mandarin', 'orange', 'lemon'])
+plt.xlabel('First t-SNE feature')
+plt.ylabel('Second t-SNE feature')
+plt.title('Fruits dataset t-SNE');
+
+
+
+
+
+#### t-SNE on the breast cancer dataset
+
+tsne = TSNE(random_state = 0)
+
+X_tsne = tsne.fit_transform(X_normalized)
+
+plot_labelled_scatter(X_tsne, y_cancer, 
+    ['malignant', 'benign'])
+plt.xlabel('First t-SNE feature')
+plt.ylabel('Second t-SNE feature')
+plt.title('Breast cancer dataset t-SNE');
