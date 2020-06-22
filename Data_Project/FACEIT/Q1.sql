@@ -25,18 +25,6 @@ where rank1 >= 3
 
 
 
-select 
 
-q.query_name,
-
-round(avg((cast(rating as float) /cast(position as float))),2) AS quality
-,
-
-round(cast(sum(case when q.rating < 3 then 1 else 0 end) as float)/cast(count(q.rating) as float)*100,2)
-as poor_query_percentage
-
-from queries AS q 
-
-group by q.query_name
 
 
