@@ -1,8 +1,6 @@
 #Machine_Learning_Project Description
 
 
-1. Kernel_Support_Vector_Machine.ipyb
+1. Default_Prediction.ipyb
 
-This is a project that I have obtained from a certain company. For confidentiality purposes, the source should be kept anonymous. The task was to build a Machine Learning to predict toxic comments from non-toxic comments on an online gaming platform. The data source is 'toxicity.xlsx' which can be found within the same Directory. 
-
-
+This project is looking to reduce losses from customers defaults by offering a new, lower-value card that supports balance management and helps customers avoid default. The task is to predict the probability of default for each customer. The data used to train the Random Forest Model is 'train.xlsx'. Otherwise, predictions are created for the 'test.xlsx' file. 
