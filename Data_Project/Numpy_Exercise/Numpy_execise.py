@@ -349,3 +349,21 @@ array21[1::2,1::2] = 0
 #array21[0:3:2,1::2]=0
 
 array21
+
+
+
+"""  np.squeeze = it sequeezes a single dimensional array into a single number
+ that represents the number of element that it contained
+ 
+ say if you have an array of [245,1] where 1 is column and 245 is row,
+
+ it will become the number of '245' after the np.squeeze.
+ 
+ """
+import numpy as np
+a = np.array([[[0], [2], [4],[4]]])
+a
+a.shape
+
+b = np.squeeze(a).shape
+b
