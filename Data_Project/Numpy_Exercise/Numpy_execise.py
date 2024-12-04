@@ -367,3 +367,13 @@ a.shape
 
 b = np.squeeze(a).shape
 b
+
+
+
+p = 11
+
+assert p == 11, 'the numeber is not 10'
+
+assert(isinstance(p,float)), 'this number is not a float'
+
+assert p == int , 'this is not a float!!!'

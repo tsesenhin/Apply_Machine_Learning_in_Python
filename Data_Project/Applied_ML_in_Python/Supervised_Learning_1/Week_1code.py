@@ -190,6 +190,20 @@ plt.ylabel('accuracy');
 
 
 # In[ ]:
+list1 = [1,2,3,4,5]
+def runningSum(listsss):
+        curSum = 0
+        emty = []
+    # go through list, overwrite existing value with 'previous sum plus current sum', curSum.
+        for i in (nums):
+            curSum+=i
+            emty.append(curSum)
+        return emty
 
+runningSum(list1)
 
-
+# %%
+import numpy as np 
+A = np.random.randn(4,3)
+B = np.sum(A, axis = 1, keepdims = True)
+B.shape
